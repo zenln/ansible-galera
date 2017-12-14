@@ -1,0 +1,5 @@
+---
+  - name: Install MariaDB Galera
+    yum: name={{ item }} state=present
+    with_flattened:
+      - "{{ galera_packages }}"

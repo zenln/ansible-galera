@@ -1,0 +1,16 @@
+---
+  # Remove this to add services for mysql and other ports open
+  #- name: Stopping firewall
+  #  service: name=firewalld state=stopped
+
+  - name: Making sure that mysql is stopped in first cluster
+    service: name=mysql state=stopped
+    when: inventory_hostname == groups['galera'][0]
+
+  - name: Bootstrap first Mariadb Galera cluster node
+    shell: service mysql start --wsrep-new-cluster
+    when: inventory_hostname == groups['galera'][0]
+
+  - name: Start the other MariaDB Galera cluster nodes
+    service: name=mysql state=started
+    when: inventory_hostname != groups['galera'][0]

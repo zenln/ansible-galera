@@ -1,0 +1,9 @@
+---
+  - name: Copying Repo File
+    copy:
+      src: files/mariadb_{{ansible_distribution_major_version}}_repo
+      dest: /etc/yum.repos.d/mariadb.repo
+      owner: root
+      group: root
+      mode: 0644
+    when: ansible_os_family == "RedHat"

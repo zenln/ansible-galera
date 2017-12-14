@@ -1,0 +1,9 @@
+---
+- name: MySQL Galera Installation Playbook
+  hosts: galera
+  user: root
+  connection: smart
+
+  roles:
+    - firewall
+    - galera

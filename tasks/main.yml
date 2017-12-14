@@ -1,0 +1,14 @@
+---
+  #- debug: msg="hostvars={{hostvars}}"
+  #- debug: msg="vars={{vars}}"
+  - name: Install Repo
+    include: install_repo.yml
+
+  - name: Install Packages
+    include: install.yml
+
+  - name: Configure Galera
+    include: galera_conf.yml
+
+  - name: Service Configuration
+    include: service.yml

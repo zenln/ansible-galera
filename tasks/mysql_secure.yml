@@ -1,0 +1,44 @@
+---
+- name: Adding MariaDB user information
+  mysql_user_alt:
+    name: "{{ item.user }}"
+    password: "{{ item.pass }}"
+    priv: "{{ item.priv }}"
+    state: present
+  tags:
+    - user
+  with_items:
+    - "{{ mariadb_user_add }}"
+  when: mariadb_user_add is defined
+
+- name: Removing MariaDB user information
+  mysql_user_alt:
+    name: "{{ item.user }}"
+    password: "{{ item.pass }}"
+    priv: "{{ item.priv }}"
+    state: absent
+  tags:
+    - user
+  with_items:
+    - "{{ mariadb_user_remove }}"
+  when: mariadb_user_remove is defined
+
+- name: Adding MariaDB Database information
+  mysql_db:
+    name: "{{ item.name }}"
+    state: present
+  tags:
+    - database
+  with_items:
+    - "{{ mariadb_database_add }}"
+  when: mariadb_database_add is defined
+
+- name: Removing MariaDB Database information
+  mysql_db:
+    name: "{{ item.name }}"
+    state: absent
+  tags:
+    - database
+  with_items:
+    - "{{ mariadb_database_remove }}"
+  when: mariadb_database_remove is defined

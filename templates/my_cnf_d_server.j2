@@ -1,0 +1,41 @@
+[server]
+
+[mysqld]
+ssl-ca = {{mysql_cert_dir}}/ca-cert.pem
+ssl-key = {{mysql_cert_dir}}/server-key.pem
+ssl-cert = {{mysql_cert_dir}}/server-cert.pem
+ssl-cipher = TLSv1.2
+
+[mysql]
+
+[galera]
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so   # Path to wsrep provider library
+# Group Node, add all MardiaDB Server IP
+{#The following template is dependent upon the group name galera and will not work without galera group given or defined (ex: when limiting play to a specific server on the group) #}
+wsrep_cluster_address="gcomm://{% for host in groups['galera'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }},{% endfor %}"   # Group Node, add all MardiaDB Server IP from group "galera"
+binlog_format=row
+default_storage_engine=InnoDB
+innodb_autoinc_lock_mode=2
+bind-address=0.0.0.0
+
+# Configuration below
+# Cluster Name
+wsrep_cluster_name="{{ galera_cluster_name }}"
+
+wsrep_node_address="{{ ansible_default_ipv4['address'] }}"
+
+# Replication Provider with rsync
+wsrep_sst_method=rsync
+
+# this is only for embedded server
+[embedded]
+
+# This group is only read by MariaDB servers, not by MySQL.
+# If you use the same .cnf file for MySQL and MariaDB,
+# you can put MariaDB-only options here
+[mariadb]
+
+# This group is only read by MariaDB-10.0 servers.
+# If you use the same .cnf file for MariaDB of different versions,
+# use this group for options that older servers don't understand
+[mariadb-10.0]
