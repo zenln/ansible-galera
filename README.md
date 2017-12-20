@@ -1,3 +1,9 @@
+# This base was designed to work with ISU ansible roles collection to install Galera cluster #
+- To make it work for general machines Please change the following
+-- Firewall settings such that each node can talk to each other. The mysql port avaliable from the nodes to attach to clients.
+-- Place certs if you are using ssl in files mysql_certs
+-- If no certs used change mysqld settings
+
 # Install and configure a Maria BD Galera cluster #
 
 ## Currently using mariaDB Galera Repo for maria db 10##
