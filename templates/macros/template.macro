@@ -1,5 +1,5 @@
 {# The following is a key value macro.
- Since mysql.cnf setting is usually either 
+ Since mysql.cnf setting is usually either
  key value or key the following macro should work for the template.
  Generic mysql.cnf file template
  [Block Service for Setting]
@@ -10,10 +10,10 @@
 {%   set value = undefined %}
 {%   if override is defined %}
 {%     set value = override %}
-{%   elif postfix[key] is defined %}
-{%     set value = postfix[key] %}
-{%   elif postfix_defaults[key] is defined and postfix_skip_defaults != true %}
-{%     set value = postfix_defaults[key] %}
+{%   elif mysql[key] is defined %}
+{%     set value = mysql[key] %}
+{%   elif mysql_defaults[key] is defined and mysql_skip_defaults != true %}
+{%     set value = mysql_defaults[key] %}
 {%   endif %}
 {{ render_option(key, value) }}
 {%- endmacro %}
