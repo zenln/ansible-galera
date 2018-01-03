@@ -7,20 +7,20 @@
       group: root
       mode: 0644
 
-  - name: Make certs dir for mysql certs
-    file:
-      path: "{{mysql_cert_dir}}"
-      mode: u=rw,g=r,o=r
-      state: directory
-      recurse: yes
-      group: "root"
-      owner: "root"
+#  - name: Make certs dir for mysql certs
+#    file:
+#      path: "{{mysql_cert_dir}}"
+#      mode: u=rw,g=r,o=r
+#      state: directory
+#      recurse: yes
+#      group: "root"
+#      owner: "root"
 
-  - name: Copy Ca, server and client certs
-    copy:
-      src: "{{item}}"
-      dest: "{{mysql_cert_dir}}"
-      owner: "root"
-      mode: 644
-    with_fileglob:
-      - "{{ansible_fqdn}}/*"
+#  - name: Copy Ca, server and client certs
+#    copy:
+#      src: "{{item}}"
+#      dest: "{{mysql_cert_dir}}"
+#      owner: "root"
+#      mode: 644
+#    with_fileglob:
+#      - "{{ansible_fqdn}}/*"

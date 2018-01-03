@@ -10,5 +10,5 @@
   - name: Configure Galera
     include: galera_conf.yml
 
-  - name: Service Configuration
-    include: service.yml
+#  - name: Service Configuration
+#    include: service.yml

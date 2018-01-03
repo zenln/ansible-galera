@@ -1,10 +1,14 @@
+{%- from 'macros/template.macros' import body_option with context -%}
+#=====
+# {{ ansible_managed }}
+#=====
 [server]
 
 [mysqld]
-ssl-ca = {{mysql_cert_dir}}/ca-cert.pem
-ssl-key = {{mysql_cert_dir}}/server-key.pem
-ssl-cert = {{mysql_cert_dir}}/server-cert.pem
-ssl-cipher = TLSv1.2
+#ssl-ca = {{mysql_cert_dir}}/ca-cert.pem
+#ssl-key = {{mysql_cert_dir}}/server-key.pem
+#ssl-cert = {{mysql_cert_dir}}/server-cert.pem
+#ssl-cipher = TLSv1.2
 
 [mysql]
 
