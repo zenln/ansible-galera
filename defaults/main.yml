@@ -16,5 +16,5 @@ galera_cluster_name: MariaDB_Cluster # Default Galera cluster name if not change
 #mysqld configuration
 
 #Galera||wsrepconfiguration
-wesrep_provider: "/usr/lib64/galera/libgalera_smm.so "
-# wsrep_cluster_address: '"gcomm://{% for host in groups['galera'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }},{% endfor %}"'
+mysql_wsrep_provider: "/usr/lib64/galera/libgalera_smm.so "
+wsrep_cluster_address: '"gcomm://{% for host in groups['galera'] %}{{ hostvars[host]['ansible_default_ipv4']['address'] }},{% endfor %}"'
